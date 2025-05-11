@@ -12,7 +12,6 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain.chains import RetrievalQA
 from langchain import PromptTemplate
 
-# --- Environment ----------------------------------------------------------
 GOOGLE_API_KEY = "AIzaSyBW6XKhpcRVHrthjvUBmyLHxTW7DJooWaA"
 os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 if not GOOGLE_API_KEY:
@@ -22,7 +21,6 @@ MILVUS_HOST = os.getenv("MILVUS_HOST", "localhost")
 MILVUS_PORT = os.getenv("MILVUS_PORT", "19530")
 COLLECTION  = os.getenv("MILVUS_COLLECTION", "pdf_documents")
 
-# --- Vector store ---------------------------------------------------------
 embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 vectorstore = Milvus(
     connection_args={ "host": MILVUS_HOST, "port": MILVUS_PORT },
@@ -32,7 +30,6 @@ vectorstore = Milvus(
 )
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-# --- LLM & prompt ---------------------------------------------------------
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.1)
 prompt = PromptTemplate(
     input_variables=["context", "question"],
@@ -50,7 +47,6 @@ qa_chain = RetrievalQA.from_chain_type(
     return_source_documents=True,
 )
 
-# --- Streamlit UI ---------------------------------------------------------
 st.set_page_config(page_title="PDF RAG Chatbot", page_icon="📄")
 st.title("📄 PDF RAG Chatbot")
 st.caption("Ask anything about your PDF corpus; answers cite page numbers.")
