@@ -1,0 +1,15 @@
+grpcio==1.67.1
+milvus-lite==2.4.12
+numpy==2.2.5
+pandas==2.2.3
+protobuf==6.30.2
+pymilvus==2.5.8
+python-dateutil==2.9.0.post0
+python-dotenv==1.1.0
+pytz==2025.2
+setuptools==80.4.0
+six==1.17.0
+tqdm==4.67.1
+tzdata==2025.2
+ujson==5.10.0
+wheel @ file:///opt/homebrew/Cellar/python%403.13/3.13.2/libexec/wheel-0.45.1-py3-none-any.whl#sha256=b9235939e2096903717cb6bfc132267f8a7e46deb2ec3ef9c5e234ea301795d0
